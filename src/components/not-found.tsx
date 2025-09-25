@@ -1,1 +1,5 @@
-<h1>404</h1>
+export function NotFound () {
+    return (
+        <h2>notfound</h2>
+    )
+}

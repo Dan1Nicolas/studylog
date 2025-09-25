@@ -7,7 +7,6 @@ interface SessionDetailsProps {
 
 export default function SessionDetails({ sessions }: SessionDetailsProps) {
   const { id } = useParams<{ id: string }>();
-
   const session = sessions.find((s) => s.id === id);
 
   if (!session) {
@@ -31,15 +30,13 @@ export default function SessionDetails({ sessions }: SessionDetailsProps) {
         <span className="font-semibold">Duração:</span> {session.minutes} minutos
       </p>
       <p className="text-gray-700 mb-2">
-        <span className="font-semibold">Data:</span>{" "}
-        {new Date(session.date).toLocaleDateString("pt-BR")}
+        <span className="font-semibold">Data:</span> {new Date(session.date).toLocaleDateString()}
       </p>
       {session.notes && (
         <p className="text-gray-700 mb-2">
           <span className="font-semibold">Anotações:</span> {session.notes}
         </p>
       )}
-
       <Link
         to="/"
         className="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"

@@ -1,3 +1,5 @@
+
+import { AddStudy } from "./pages/add-Study";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { StudyForm } from "./components/Study-form";
 import { Home } from './pages/home';
@@ -5,8 +7,8 @@ import { NotFound } from './components/not-found';
 import { useState } from 'react';
 import type { StudySession } from './types/study';
 
-function App() {
 
+function App() {
   const [sessions, setSessions] = useState<StudySession[]>([])
 
   return (

@@ -1,14 +1,45 @@
 import { useState } from "react";
 
-export function StudyForm() {
+export interface StudySession {
+  id: string;
+  subject: string;
+  minutes: number;
+  date: string;
+  notes?: string;
+}
+
+interface StudyFormProps {
+  onAddSession: (session: StudySession) => void;
+}
+
+export function StudyForm({ onAddSession }: StudyFormProps) {
   const [id, setId] = useState("");
   const [subject, setSubject] = useState("");
-  const [duration, setDuration] = useState("");
+  const [duration, setDuration] = useState<number>(0);
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
 
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const newSession: StudySession = {
+      id,
+      subject,
+      minutes: duration,
+      date,
+      notes: notes || undefined,
+    };
+
+    onAddSession(newSession);
+    setId("");
+    setSubject("");
+    setDuration(0);
+    setDate("");
+    setNotes("");
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="Study-id">ID da matéria</label>
       <input
         type="text"
@@ -16,6 +47,7 @@ export function StudyForm() {
         value={id}
         onChange={(e) => setId(e.target.value)}
         placeholder="ID da Matéria"
+        required
       />
 
       <label htmlFor="Study-subject">Nome da Matéria</label>
@@ -25,15 +57,17 @@ export function StudyForm() {
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         placeholder="Nome da Matéria"
+        required
       />
 
-      <label htmlFor="Study-duration">Duração</label>
+      <label htmlFor="Study-duration">Duração (minutos)</label>
       <input
         type="number"
         id="Study-duration"
         value={duration}
-        onChange={(e) => setDuration(e.target.value)}
+        onChange={(e) => setDuration(Number(e.target.value))}
         placeholder="Duração (minutos)"
+        required
       />
 
       <label htmlFor="Study-date">Data</label>
@@ -42,7 +76,7 @@ export function StudyForm() {
         id="Study-date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        placeholder="Dia do Estudo"
+        placeholder="Dia da tarefa"
       />
 
       <label htmlFor="Study-notes">Descrição</label>
@@ -54,7 +88,7 @@ export function StudyForm() {
         placeholder="Descrição"
       />
 
-      <button type="submit">Adicionar Estudo</button>
+      <button type="submit">Adicionar Tarefa</button>
     </form>
   );
 }

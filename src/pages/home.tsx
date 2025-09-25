@@ -11,13 +11,12 @@ export function Home({ sessions }: HomeProps) {
         <>
             <h2>Página Inicial - Estudos</h2>
 
-            if (sessions.length === 0) {
-                console.log("Nenhuma sessão de estudo cadastrada ainda")
-            }
-
-            {sessions.map(session => (
+            {sessions.length === 0
+            ? (<p>Nenhuma sessão de estudo cadastrada ainda</p>)
+            : (sessions.map(session => (
                 <StudyCard study={session} key={session.id} />
-                ))}
+            )))
+        }
         </>
     )
 }

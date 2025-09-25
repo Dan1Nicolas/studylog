@@ -1,14 +1,18 @@
+import StudyCard from "../components/study-card";
 import type { StudySession } from "../types/study";
 
-interface HomeProps {
+interface sessions {
     study: StudySession[];
     
 }
 
-export function Home({ study }: HomeProps) {
+export function Home({}: sessions) {
     return (
         <>
             <h2>Página Inicial - Estudos</h2>
+            {sessions.map(session => (
+                <StudyCard study={session} key={session.id} />
+                ))}
         </>
     )
 }

@@ -1,4 +1,4 @@
-import type { StudySession } from "../types/study";
+import type { StudySession } from "../types/study.ts";
 
 interface StudyCardProps {
     study: StudySession
@@ -7,7 +7,6 @@ interface StudyCardProps {
 export default function StudyCard({ study }: StudyCardProps) {
     return (
         <div>
-        
             <p>{study.subject}</p>
             <p>Minutos: {study.minutes} min</p>
             <p>Data: {study.date}</p>

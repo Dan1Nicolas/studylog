@@ -1,12 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { StudyForm } from "./components/Study-form";
 import { Home } from "./pages/home";
 import { NotFound } from "./components/not-found";
 import { useState } from "react";
 import type { StudySession } from "./types/study";
 import { Layout } from "./components/layout";
 import SessionDetails from "./pages/session-details";
-
+import { AddStudy } from "./pages/add-Study";
 
 function App() {
   const [sessions, setSessions] = useState<StudySession[]>([]);
@@ -16,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home sessions={sessions} />} />
-          <Route path="add" element={<StudyForm />} />
+          <Route path="add" element={<AddStudy />} />
           <Route
             path="session/:id"
             element={<SessionDetails sessions={sessions} />}

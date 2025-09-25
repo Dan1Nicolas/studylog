@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { StudyForm } from "../components/Study-form";
-import type { StudySession } from "../components/Study-form";
+import type { StudySession } from "../types/study";
 
 export function AddStudy() {
   const [sessions, setSessions] = useState<StudySession[]>([]);
@@ -9,32 +9,29 @@ export function AddStudy() {
     setSessions((prev) => [...prev, session]);
   }, []);
 
-const totalSessions = useMemo(() => {
-  return sessions.length;
-}, [sessions]);
+  const totalSessions = useMemo(() => sessions.length, [sessions]);
 
-const totalMinutes = useMemo(() => {
-  let totalMinutes: number = 0;
-
-  sessions.forEach((session) => {
-    totalMinutes += session.minutes;
-  });
-
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-
-  return `${hours}h ${minutes}min`;
-}, [sessions]);
+  const totalMinutes = useMemo(() => {
+    return sessions.reduce((sum, session) => sum + session.minutes, 0);
+  }, [sessions]);
 
   return (
-    <>
-      <h2>Adicionar nova sessão de estudos</h2>
+    <div className="max-w-2xl mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-4">Adicionar nova sessão de estudos</h2>
       <p>Total de sessões: {totalSessions}</p>
-      <p>Tempo total estudado: {totalMinutes} min</p>
+      <p>Total de minutos estudados: {totalMinutes}</p>
 
       <StudyForm onAddSession={addSession} />
-        
-    </>
+
+      {sessions.length > 0 && (
+        <ul className="mt-4">
+          {sessions.map((s) => (
+            <li key={s.id}>
+              {s.subject} — {s.minutes} min em {new Date(s.date).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
-

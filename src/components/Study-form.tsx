@@ -1,12 +1,5 @@
 import { useState } from "react";
-
-export interface StudySession {
-  id: string;
-  subject: string;
-  minutes: number;
-  date: string;
-  notes?: string;
-}
+import type { StudySession } from "../types/study";
 
 interface StudyFormProps {
   onAddSession: (session: StudySession) => void;
@@ -15,7 +8,7 @@ interface StudyFormProps {
 export function StudyForm({ onAddSession }: StudyFormProps) {
   const [id, setId] = useState("");
   const [subject, setSubject] = useState("");
-  const [duration, setDuration] = useState<number>(0);
+  const [minutes, setMinutes] = useState<number>(0);
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
 
@@ -25,7 +18,7 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
     const newSession: StudySession = {
       id,
       subject,
-      minutes: duration,
+      minutes,
       date,
       notes: notes || undefined,
     };
@@ -33,62 +26,59 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
     onAddSession(newSession);
     setId("");
     setSubject("");
-    setDuration(0);
+    setMinutes(0);
     setDate("");
     setNotes("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="Study-id">ID da matéria</label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+      <label>ID da matéria</label>
       <input
         type="text"
-        id="Study-id"
         value={id}
         onChange={(e) => setId(e.target.value)}
         placeholder="ID da Matéria"
         required
       />
 
-      <label htmlFor="Study-subject">Nome da Matéria</label>
+      <label>Nome da Matéria</label>
       <input
         type="text"
-        id="Study-subject"
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         placeholder="Nome da Matéria"
         required
       />
 
-      <label htmlFor="Study-duration">Duração (minutos)</label>
+      <label>Duração (minutos)</label>
       <input
         type="number"
-        id="Study-duration"
-        value={duration}
-        onChange={(e) => setDuration(Number(e.target.value))}
-        placeholder="Duração (minutos)"
+        value={minutes}
+        onChange={(e) => setMinutes(Number(e.target.value))}
+        placeholder="Duração"
         required
       />
 
-      <label htmlFor="Study-date">Data</label>
+      <label>Data</label>
       <input
         type="date"
-        id="Study-date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        placeholder="Dia da tarefa"
+        required
       />
 
-      <label htmlFor="Study-notes">Descrição</label>
+      <label>Notas (opcional)</label>
       <input
         type="text"
-        id="Study-notes"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder="Descrição"
+        placeholder="Notas"
       />
 
-      <button type="submit">Adicionar Tarefa</button>
+      <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        Adicionar Sessão
+      </button>
     </form>
   );
 }

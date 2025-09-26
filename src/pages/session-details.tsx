@@ -24,7 +24,7 @@ export default function SessionDetails({ sessions }: SessionDetailsProps) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-400">
       <h2 className="text-2xl font-bold mb-4">{session.subject}</h2>
       <p className="text-gray-700 mb-2">
         <span className="font-semibold">Duração:</span> {session.minutes} minutos

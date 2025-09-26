@@ -32,9 +32,10 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <label>ID da matéria</label>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 bg-white border border-gray-400 hover:border-blue-600 p-3 rounded-2xl">
+      <label className="font-bold">ID da Matéria</label>
       <input
+        className="flex p-1 rounded-md border border-gray-400 hover:border-blue-600"
         type="text"
         value={id}
         onChange={(e) => setId(e.target.value)}
@@ -42,8 +43,9 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
         required
       />
 
-      <label>Nome da Matéria</label>
+      <label className="font-bold">Nome da Matéria</label>
       <input
+        className="bg-white flex p-1 rounded-md border border-gray-400 hover:border-blue-600"
         type="text"
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
@@ -51,8 +53,9 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
         required
       />
 
-      <label>Duração (minutos)</label>
+      <label className="font-bold">Duração (minutos)</label>
       <input
+        className="bg-white flex p-1 rounded-md border border-gray-400 hover:border-blue-600"
         type="number"
         value={minutes}
         onChange={(e) => setMinutes(Number(e.target.value))}
@@ -60,16 +63,18 @@ export function StudyForm({ onAddSession }: StudyFormProps) {
         required
       />
 
-      <label>Data</label>
+      <label className="font-bold">Data</label>
       <input
+        className="bg-white flex p-1 rounded-md border border-gray-400 hover:border-blue-600"
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
         required
       />
 
-      <label>Notas (opcional)</label>
+      <label className="font-bold">Notas (opcional)</label>
       <input
+      className="bg-white flex p-1 rounded-md border border-gray-400 hover:border-blue-600"
         type="text"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}

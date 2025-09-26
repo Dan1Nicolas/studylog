@@ -24,13 +24,16 @@ export function Home({ sessions }: HomeProps) {
 
     return (
         <>
-            <h2>Página Inicial - Estudos</h2>
-            <p>Total de sessões: {totalSessions}</p>
-            <p>Total de minutos: {totalMinutes}</p>
-            <p>Média de minutos por sessão: {averageMinutes}</p>
+            <h2 className="font-bold text-black text-2xl p-3 flex justify-center items-center ">Página Inicial - Estudos</h2>
+
+            <div className="font-medium text-black flex flex-col justify-center items-center gap-2 p-2">
+                <p>Total de sessões: {totalSessions}</p>
+                <p>Total de minutos: {totalMinutes}</p>
+                <p>Média de minutos por sessão: {averageMinutes}</p>
+            </div>
 
             {sessions.length === 0
-            ? (<p>Nenhuma sessão de estudo cadastrada ainda</p>)
+            ? (<p className="flex justify-center items-center p-2 m-auto w-md bg-red-600 text-white font-medium rounded-md">Nenhuma sessão de estudo cadastrada ainda</p>)
             : (sessions.map(session => (
                 <StudyCard study={session} key={session.id} />
             )))

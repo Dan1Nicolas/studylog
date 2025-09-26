@@ -7,19 +7,21 @@ interface AddStudyProps {
 }
 
 export function AddStudy({ sessions, onAddSession }: AddStudyProps) {
+  const totalMinutes = sessions.reduce((sum, s) => sum + s.minutes, 0);
+
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-4">Adicionar nova sessão de estudos</h2>
-      <p>Total de sessões: {sessions.length}</p>
-      <p>Total de minutos estudados: {sessions.reduce((sum, s) => sum + s.minutes, 0)}</p>
+      <h2 className="text-2xl font-bold mb-4 flex justify-center items-center">Adicionar nova sessão de estudos</h2>
+      <p className="flex justify-center items-center font-medium p-1">Total de sessões: {sessions.length}</p>
+      <p className="flex justify-center items-center font-medium p-1">Total de minutos estudados: {totalMinutes}</p>
 
       <StudyForm onAddSession={onAddSession} />
 
       {sessions.length > 0 && (
-        <ul className="mt-4 space-y-2">
+        <ul className="mt-4 border border-gray-500 p-2 rounded-md font-medium">
           {sessions.map((s) => (
-            <li key={s.id} className="p-2 border rounded bg-gray-50">
-              {s.subject} — {s.minutes} min em {new Date(s.date).toLocaleDateString()}
+            <li key={s.id}>
+              {s.subject} — {s.minutes} min em {new Date(s.date).toLocaleDateString("pt-BR")}
             </li>
           ))}
         </ul>

@@ -7,7 +7,7 @@ interface HomeProps {
     
 }
 
-export function Home({ sessions }: HomeProps) {
+export default function Home({ sessions }: HomeProps) {
 
     const totalSessions = useMemo(() => {
         return sessions.length;

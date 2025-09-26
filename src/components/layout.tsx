@@ -4,9 +4,9 @@ export function Layout() {
   return (
     <div>
       <nav >
-        <div>
-          <Link to="/"> Home </Link>
-          <Link to="/add"> Nova Tarefa</Link>
+        <div className="flex justify-center items-center gap-9 font-bold text-blue-600 border-b-2 border-gray-400 p-3 text-xl ">
+          <Link className="hover:text-blue-300 hover:underline" to="/"> Home </Link>
+          <Link className="hover:text-blue-300 hover:underline " to="/add"> Nova Tarefa</Link>
         </div>
       </nav>
       <main>

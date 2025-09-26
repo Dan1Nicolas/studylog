@@ -46,7 +46,9 @@ npm run preview
 
 - **Daniel Nicolas Leoterio**  
   RM: 562186  
-  Turma: 1TDSPV  
+  Turma: 1TDSPV
+  - Page details, bug fix, styles
+
   [GitHub](https://github.com/Dan1Nicolas)
   •
   [LinkedIn](https://www.linkedin.com/in/daniel-leoterio/)
@@ -54,6 +56,7 @@ npm run preview
 - **Matheus Moya de Oliveira**  
   RM: 562822  
   Turma: 1TDSPV  
+  - Pages home And 404 & studyCard
   [GitHub](https://github.com/matheusmoyaoliveira)
   •
   [LinkedIn](https://www.linkedin.com/in/matheusmoyaoliveira/)
@@ -61,6 +64,7 @@ npm run preview
 - **Ana Carolina Pereira Fontes**  
   RM: 562145  
   Turma: 1TDSPV  
+  - Page AddStudy and component studyForm & styles
   [GitHub](https://github.com/CarolinaaFontes)
   •
   [LinkedIn](https://www.linkedin.com/in/ana-carolina-pereira-fontes/) 

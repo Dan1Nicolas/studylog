@@ -6,7 +6,7 @@ interface AddStudyProps {
   onAddSession: (session: StudySession) => void;
 }
 
-export function AddStudy({ sessions, onAddSession }: AddStudyProps) {
+export default function AddStudy({ sessions, onAddSession }: AddStudyProps) {
   const totalMinutes = sessions.reduce((sum, s) => sum + s.minutes, 0);
 
   return (

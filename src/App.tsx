@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/home";
-import { NotFound } from "./components/not-found";
-import { useState } from "react";
+import { lazy, useState, Suspense } from "react";
 import type { StudySession } from "./types/study";
 import { Layout } from "./components/layout";
-import SessionDetails from "./pages/session-details";
-import { AddStudy } from "./pages/add-Study";
+
+const Home = lazy(() => import("./pages/home"));
+const AddStudy = lazy(() => import("./pages/add-Study"));
+const SessionDetails = lazy(() => import("./pages/session-details"));
+const NotFound = lazy(() => import("./components/not-found"));
+
 
 function App() {
   const [sessions, setSessions] = useState<StudySession[]>([]);
@@ -16,6 +18,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Suspense fallback={<div>Carregando...</div>}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home sessions={sessions} />} />
@@ -24,6 +27,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+    </Suspense>
     </BrowserRouter>
   );
 }
